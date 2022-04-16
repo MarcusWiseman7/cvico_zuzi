@@ -21,11 +21,11 @@
     $: slidingNav = false;
     $: closingNav = false;
     $: rafPending = false;
-    $: translateX = '0px';
+    $: translateX = 0;
 
     const routeTo = (href: string): void => {
         goto(href);
-        navOpen = false;
+        closeNav();
     };
 
     const resetVars = (): void => {
@@ -34,34 +34,33 @@
         checkPoint = null;
         slidingNav = false;
         closingNav = false;
-        translateX = '0px';
+        translateX = 0;
     };
     const aniFrame = (): void => {
-        translateX = startPoint.x - lastPoint.x + 'px';
+        translateX = Math.min(0, lastPoint.x - startPoint.x);
         rafPending = false;
     };
     const endAniFrame = (): void => {
         if (closingNav) {
             navOpen = false;
         } else {
-            translateX = '0px';
+            translateX = 0;
         }
 
-        setTimeout(() => {
+        setTimeout((): void => {
             resetVars();
         }, 300);
     };
-    const onPointerdown = ($event): void => {
-        if (window.PointerEvent) $event.target.setPointerCapture($event.pointerId);
+    const onTouchstart = ($event: TouchEvent): void => {
         startPoint = getPointFromEvent($event);
     };
-    const onPointermove = ($event: Event): void => {
+    const onTouchmove = ($event: TouchEvent): void => {
         lastPoint = getPointFromEvent($event);
         if (checkPoint) {
             closingNav = lastPoint.x < checkPoint.x;
         }
 
-        setTimeout(() => {
+        setTimeout((): void => {
             checkPoint = lastPoint;
         }, 0);
 
@@ -73,39 +72,55 @@
             slidingNav = true;
         }
     };
-    const onPointerup = ($event): void => {
-        if (window.PointerEvent) $event.target.releasePointerCapture($event.pointerId);
+    const onTouchend = (): void => {
         window.requestAnimationFrame(endAniFrame);
+    };
+    const openNav = (): void => {
+        navOpen = true;
+        setTimeout((): void => {
+            const el = document.getElementById('nav');
+            el.addEventListener('touchstart', onTouchstart, false);
+            el.addEventListener('touchmove', onTouchmove, false);
+            el.addEventListener('touchend', onTouchend, false);
+        }, 0);
+    };
+    const closeNav = (): void => {
+        const el = document.getElementById('nav');
+        el.removeEventListener('touchstart', onTouchstart);
+        el.removeEventListener('touchmove', onTouchmove);
+        el.removeEventListener('touchend', onTouchend);
+
+        setTimeout((): void => {
+            navOpen = false;
+        }, 0);
+    };
+    const checkSliding = (): void => {
+        if (!slidingNav) closeNav();
     };
 </script>
 
 <header class="h-16 fixed left-0 top-0 w-full flex items-center justify-center text-white z-30">
     <span
         class="absolute left-3 text-xs lg:text-base font-semibold cursor-pointer rounded-full p-2 hover:bg-pink-600"
-        on:click={() => {
-            navOpen = true;
-        }}
+        on:click={openNav}
     >
         MENU
     </span>
 
-    <span class="text-3xl tracking-wider" on:click={() => goto('/')}>Zuzana Doudová</span>
+    <span class="text-3xl tracking-wider cursor-pointer" on:click={() => goto('/')}>Zuzana Doudová</span>
 </header>
 
 {#if navOpen}
     <nav
         class="fixed left-0 top-0 w-full h-full z-40"
-        style={translateX}
+        id="nav"
         transition:fly={{ x: -100, opacity: 1, easing: linear, duration: 300 }}
-        on:pointerdown={onPointerdown}
-        on:pointermove={onPointermove}
-        on:pointerup={onPointerup}
-        on:pointercancel={onPointerup}
-        on:click|stopPropagation={() => {
-            navOpen = false;
-        }}
+        on:click|stopPropagation={checkSliding}
     >
-        <ul class="absolute left-0 top-0 h-full w-72 pt-5 shadow-xl shadow-stone-500 bg-stone-700">
+        <ul
+            class="absolute left-0 top-0 h-full w-72 pt-5 shadow-xl shadow-stone-500 bg-stone-700"
+            style={`left: ${translateX}px`}
+        >
             {#each navItems as item}
                 <li
                     class="text-sm font-semibold text-white py-4 px-5 hover:bg-stone-600"
@@ -120,10 +135,6 @@
 
 <style>
     header {
-        background-color: #fc1c7d;
-    }
-
-    nav {
-        touch-action: pan-x;
+        background-color: var(--main-color);
     }
 </style>

@@ -10,6 +10,6 @@ export const getPointFromEvent = ($event): { x: number, y: number } => {
     return point;
 };
 
-export const waitForIt = (ms: number) => {
+export const waitForIt = (ms: number): Promise<void> => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
