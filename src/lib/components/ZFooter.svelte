@@ -12,13 +12,13 @@
     };
 </script>
 
-<footer class=" bg-stone-800 text-white w-full">
+<footer class=" bg-stone-800 text-white w-full mt-5">
     {#if $page.url.pathname === '/'}
         <div class="w-full grid grid-cols-2 lg:grid-cols-3">
             {#each items as item}
                 <div class="flex items-center justify-center py-4">
                     <span
-                        class="item text-2xl lg:text-3xl font-semibold p-4 cursor-pointer underline underline-offset-2 decoration-4"
+                        class="item text-2xl decoration-pink-1 lg:text-3xl font-semibold p-4 cursor-pointer underline underline-offset-2 decoration-4"
                         on:click={() => {
                             itemClick(item);
                         }}
@@ -33,9 +33,3 @@
         <span class="text-sm">Marcus Wiseman &copy; {new Date().getFullYear()}</span>
     </div>
 </footer>
-
-<style>
-    .item {
-        text-decoration-color: var(--main-color);
-    }
-</style>

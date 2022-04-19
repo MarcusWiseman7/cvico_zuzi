@@ -34,17 +34,10 @@
             </div>
 
             <!-- title -->
-            <h1 class="text-3xl">{$popupObj.title}</h1>
+            <h1 class="text-3xl text-pink-1">{$popupObj.title}</h1>
 
             <!-- text -->
-            <p class="mt-6 w-full text-xl text-justify">{$popupObj.text}</p>
+            <p class="mt-6 w-full text-xl text-pink-1 text-justify">{$popupObj.text}</p>
         </div>
     </div>
 {/if}
-
-<style>
-    h1,
-    p {
-        color: var(--main-color);
-    }
-</style>

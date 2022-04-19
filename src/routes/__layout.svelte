@@ -18,7 +18,7 @@
     class="flex flex-col items-center justify-between pt-20 w-full min-h-screen text-stone-900 select-none overflow-x-hidden"
 >
     <ZHeader />
-    <div class="min-h-max w-full px-3.5 lg:w-2/3 lg:max-w-4xl lg:px-0">
+    <div class="min-h-max w-full px-3.5 lg:w-3/4 lg:max-w-5xl lg:px-0">
         <slot />
     </div>
     <ZFooter />

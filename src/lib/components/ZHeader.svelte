@@ -99,7 +99,7 @@
     };
 </script>
 
-<header class="h-16 fixed left-0 top-0 w-full flex items-center justify-center text-white z-30">
+<header class="h-16 bg-pink-1 fixed left-0 top-0 w-full flex items-center justify-center text-white z-30">
     <span
         class="absolute left-3 text-xs lg:text-base font-semibold cursor-pointer rounded-full p-2 hover:bg-pink-600"
         on:click={openNav}
@@ -132,9 +132,3 @@
         </ul>
     </nav>
 {/if}
-
-<style>
-    header {
-        background-color: var(--main-color);
-    }
-</style>
