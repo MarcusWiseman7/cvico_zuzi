@@ -1,17 +1,19 @@
 <script>
     const headers = ['', 'slkdjf', 'sldkjf', 'sldkjf', 'dslkf'];
     const rows = [
-        { cols: ['pa', 'dslkjf', 'sldkf', 'ds', ''] },
-        { cols: ['sd', 'dslkjf', '', '', 'sldkjf sdklfj sdf'] },
-        { cols: ['fd', '', 'sldkf', 'sdfsdf', ''] },
-        { cols: ['fd', 'dslkjf', 'sldkf lksdjf kdfsk k', '', ''] },
-        { cols: ['ko', 'dslkjf', 'sldkf', '', ''] },
+        { cols: ['PO', 'dslkjf', 'sldkf', 'ds', ''] },
+        { cols: ['UT', 'dslkjf', '', 'lkjdskjdsfkjdskfljdskfjlkdsjfkljdsfkjdskfjdskljfdslkf', 'sldkjf sdklfj sdf'] },
+        { cols: ['ST', '', 'sldkf', 'sdfsdf', ''] },
+        { cols: ['CT', 'dslkjf', 'sldkf lksdjf kdfsk k', '', ''] },
+        { cols: ['PA', 'dslkjf', 'sldkf', '', ''] },
+        { cols: ['SO', '', '', '', ''] },
+        { cols: ['NE', '', '', '', ''] },
     ];
 
     const h_width = 90 / (headers.length - 1) + '%';
 </script>
 
-<table class="shadow-xl">
+<table class="shadow-xl w-full break-words table-fixed">
     <thead>
         <tr>
             {#each headers as header}
@@ -32,7 +34,7 @@
 
 <style>
     thead {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
     th {
@@ -53,6 +55,6 @@
     }
 
     tr:nth-child(2n) {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.07);
     }
 </style>

@@ -1,4 +1,5 @@
 <script>
+    import { goto } from '$app/navigation';
     const src = 'https://res.cloudinary.com/dqrpaoopz/image/upload/v1602930400/zuzana/hero1_ffuypg.jpg';
 </script>
 
@@ -10,7 +11,14 @@
         <span class="font-semibold italic">"Síla nepochází z fyzických schopností, ale z nezlomné vůle."</span>
         <span class="text-sm">-Mahátma Gándhí</span>
     </blockquote>
-    <button class="py-3 px-5 mt-12 border-2 border-pink-1 text-pink-1 rounded-lg text-2xl">AKCE/AKTUALITY</button>
+    <button
+        on:click={() => {
+            goto('/aktuality');
+        }}
+        class="py-3 px-5 mt-12 border-2 border-pink-1 text-pink-1 rounded-lg text-2xl"
+    >
+        AKCE/AKTUALITY
+    </button>
 </div>
 
 <div class=" h-96" />

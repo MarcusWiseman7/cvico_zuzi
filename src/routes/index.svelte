@@ -18,7 +18,7 @@
         />
     </section>
 
-    <section>
+    <section class="flex flex-col justify-center">
         <blockquote class="italic text-3xl md:text-4xl font-extralight text-right">
             "Myslím, že cvičení by mělo být formou aktivního odpočinku a tak se snažím, aby si každý z hodiny odnesl
             nejen dobrý pocit z toho, že pro sebe něco udělal, ale především se odprostil od běžných starostí a odcházel

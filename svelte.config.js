@@ -9,6 +9,7 @@ const config = {
 
     kit: {
         adapter: adapter({ out: 'build' }),
+        vite: { optimizeDeps: { include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep'] } },
     },
 };
 
