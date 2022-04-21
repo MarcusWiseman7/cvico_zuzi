@@ -4,6 +4,7 @@
     import Email_src from '$lib/assets/icons/email.svg';
     import ZSchedule from '$lib/components/ZSchedule.svelte';
     import ZEvents from '$lib/components/ZEvents.svelte';
+
     const info = 'skldjf kjsdfl kdfkj dlskjfkljd lkfjdskf l';
 </script>
 

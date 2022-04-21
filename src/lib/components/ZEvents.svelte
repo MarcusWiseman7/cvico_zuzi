@@ -1,6 +1,8 @@
 <script>
     import ZEventItem from './ZEventItem.svelte';
 
+    export let grid = false;
+
     const title = 'DS kdsfkdsf sdkfk ksdfkdsl';
     const events = [
         {
@@ -38,9 +40,9 @@
 
 {#if events?.length}
     <h2 class="text-2xl underline underline-offset-1">{title}</h2>
-    <ul>
+    <ul class={grid ? 'lg:grid lg:grid-cols-2' : ''}>
         {#each events as event, index}
-            <ZEventItem {event} odd={index % 2 == 0} />
+            <ZEventItem {event} pink={index % (grid ? 3 : 2) == 0} />
         {/each}
     </ul>
 {/if}

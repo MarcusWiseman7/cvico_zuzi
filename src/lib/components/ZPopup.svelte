@@ -26,18 +26,25 @@
             on:click|stopPropagation
             role="dialog"
             transition:scale={{ duration: 500, delay: 100 }}
-            class="rounded-lg h-auto max-w-3xl bg-slate-800 relative flex flex-col items-center py-6 px-10 font-semibold mx-2"
+            class="rounded-lg h-auto max-w-3xl bg-slate-800 relative flex flex-col items-center py-6 px-10 lg:px-14 font-semibold mx-2 text-pink-1"
         >
-            <!-- Closer -->
+            <!-- closer -->
             <div on:click={close} class="absolute top-0 left-0 py-3 px-4 cursor-pointer">
                 <img src={closer} alt="close" />
             </div>
 
             <!-- title -->
-            <h1 class="text-3xl text-pink-1">{$popupObj.title}</h1>
+            <h1 class="text-3xl text-center">{$popupObj.title}</h1>
+
+            <!-- subtitle -->
+            {#if $popupObj.subtitle}
+                <h3 class="text-2xl mt-3">{$popupObj.subtitle}</h3>
+            {/if}
 
             <!-- text -->
-            <p class="mt-6 w-full text-xl text-pink-1 text-justify">{$popupObj.text}</p>
+            {#if $popupObj.text}
+                <p class="mt-6 mb-2 w-full text-xl text-justify">{$popupObj.text}</p>
+            {/if}
         </div>
     </div>
 {/if}

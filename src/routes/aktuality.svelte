@@ -21,13 +21,13 @@
 </script>
 
 <!-- Headline -->
-<h2>Co se u nas deje?</h2>
+<h2 class="text-3xl my-6">Co se u nas deje?</h2>
 
 <!-- Flyer -->
-<img src="" alt="Flyer" class="w-full" />
+<ZImage src={''} alt="Flyer" zclass="w-full" />
 
 <!-- Events -->
-<ZEvents />
+<ZEvents grid />
 
 <!-- Carousel of pics -->
 <div class="mt-6">

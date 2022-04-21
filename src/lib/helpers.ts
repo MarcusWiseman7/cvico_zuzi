@@ -10,6 +10,6 @@ export const getPointFromEvent = ($event): { x: number, y: number } => {
     return point;
 };
 
-export const waitForIt = (ms: number): Promise<void> => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+export const formatPhone = (phone: number|string): string => {
+    return phone.toString().replace(/\s/g, '').replace(/(.{3})/g,'$1 ');
 };
