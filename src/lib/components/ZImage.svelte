@@ -1,9 +1,18 @@
 <script lang="ts">
-    export let src: string;
+    import { urlFor } from '$lib/image-url';
+    import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+
+    export let src: SanityImageSource;
     export let alt: string;
-    export let height: number | string = '';
-    export let width: number | string = '';
+    // export let height: number;
+    // export let width: number;
     export let zclass: string = '';
 </script>
 
-<img {src} {alt} {height} {width} class={zclass} on:contextmenu|preventDefault on:dragstart|preventDefault />
+<img
+    src={urlFor(src).format('webp').url()}
+    {alt}
+    class={zclass}
+    on:contextmenu|preventDefault
+    on:dragstart|preventDefault
+/>
