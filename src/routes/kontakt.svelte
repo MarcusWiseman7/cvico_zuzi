@@ -2,6 +2,8 @@
     import { onDestroy, onMount } from 'svelte';
     import { formatPhone } from '$lib/helpers';
     import { kontakt } from '$lib/stores';
+    import FB_src from '$lib/assets/icons/facebook.svg';
+    import Email_src from '$lib/assets/icons/email.svg';
 
     let l_to = null;
     let l_counter = 0;
@@ -72,6 +74,21 @@
             {#each $kontakt.address as address}
                 <p class="text-lg">{address}</p>
             {/each}
+        {/if}
+
+        {#if $kontakt?.facebook || $kontakt?.email}
+            <div class="flex justify-center pt-5">
+                {#if $kontakt?.facebook}
+                    <a href={$kontakt.facebook} target="_blank" class="mx-5">
+                        <img src={FB_src} alt="facebook" />
+                    </a>
+                {/if}
+                {#if $kontakt.email}
+                    <a href={`mailto:${$kontakt.email}`} class="mx-5">
+                        <img src={Email_src} alt="email" />
+                    </a>
+                {/if}
+            </div>
         {/if}
     </div>
 {/if}

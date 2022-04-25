@@ -34,8 +34,8 @@ export const kontakt = readable(null, set => {
     getPageContent('kontakt').then(set).catch(err => console.error(err));
 });
 
-export const osobni_profile = readable(null, set => {
-    getPageContent('osobni_profile').then(set).catch(err => console.error(err));
+export const osobni_profil = readable(null, set => {
+    getPageContent('osobni_profil').then(set).catch(err => console.error(err));
 });
 
 export const rozpis_lekci = readable(null, set => {

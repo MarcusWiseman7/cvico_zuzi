@@ -4,6 +4,7 @@
     import Email_src from '$lib/assets/icons/email.svg';
     import ZSchedule from '$lib/components/ZSchedule.svelte';
     import ZEvents from '$lib/components/ZEvents.svelte';
+    import { kontakt } from '$lib/stores';
 
     const info = 'skldjf kjsdfl kdfkj dlskjfkljd lkfjdskf l';
 </script>
@@ -26,12 +27,16 @@
             s úsměvem"
         </blockquote>
         <div class="flex justify-center py-5">
-            <button class="mx-5">
-                <img src={FB_src} alt="facebook" />
-            </button>
-            <button class="mx-5">
-                <img src={Email_src} alt="email" />
-            </button>
+            {#if $kontakt?.facebook}
+                <a href={$kontakt.facebook} target="_blank" class="mx-5">
+                    <img src={FB_src} alt="facebook" />
+                </a>
+            {/if}
+            {#if $kontakt?.email}
+                <a href={`mailto:${$kontakt.email}`} class="mx-5">
+                    <img src={Email_src} alt="email" />
+                </a>
+            {/if}
         </div>
     </section>
 

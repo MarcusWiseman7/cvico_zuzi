@@ -1,7 +1,8 @@
 <script lang="ts">
     import { scale } from 'svelte/transition';
-    import { popupObj } from '$lib/stores';
+    import { kontakt, popupObj } from '$lib/stores';
     import closer from '$lib/assets/icons/closer.svg';
+    import Email_src from '$lib/assets/icons/email_white.svg';
 
     const close = (): void => {
         popupObj.set(null);
@@ -19,14 +20,14 @@
     <!-- holder -->
     <div
         on:click={close}
-        class="h-screen w-screen fixed left-0 top-0 z-40 flex justify-center items-center bg-slate-900 bg-opacity-80"
+        class="h-screen w-screen fixed left-0 top-0 z-40 flex justify-center items-center bg-slate-900 bg-opacity-40"
     >
         <!-- popup -->
         <div
             on:click|stopPropagation
             role="dialog"
             transition:scale={{ duration: 500, delay: 100 }}
-            class="rounded-lg h-auto max-w-3xl bg-slate-800 relative flex flex-col items-center py-6 px-10 lg:px-14 font-semibold mx-2 text-pink-1"
+            class="rounded-lg h-auto max-w-3xl relative flex flex-col items-center py-6 px-10 lg:px-14 font-semibold mx-2 bg-slate-700 text-white"
         >
             <!-- closer -->
             <div on:click={close} class="absolute top-0 left-0 py-3 px-4 cursor-pointer">
@@ -44,6 +45,13 @@
             <!-- text -->
             {#if $popupObj.text}
                 <p class="mt-6 mb-2 w-full text-xl text-justify">{$popupObj.text}</p>
+            {/if}
+
+            {#if $popupObj.email && $kontakt?.email}
+                <a href={`mailto:${$kontakt.email}`} class="mt-6 flex items-center border rounded-lg px-4 py-2">
+                    <img src={Email_src} alt="email" class="mr-2" />
+                    <p>Email for more info, or to register</p>
+                </a>
             {/if}
         </div>
     </div>

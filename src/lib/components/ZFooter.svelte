@@ -1,13 +1,17 @@
 <script lang="ts">
     import { popupObj } from '$lib/stores';
     import { page } from '$app/stores';
+    import { cviceni } from '$lib/stores';
 
-    const items = ['BodyART', 'DeepWORK', 'Spinning', 'Power joga', 'Bosu', 'Bodystyling'];
+    const items = ['bodyart', 'deepwork', 'spinning', 'power jóga', 'bosu cardio/body', 'bodystyling'];
+    $: exercises = $cviceni?.exercise_list?.length
+        ? $cviceni.exercise_list.filter((li) => items.includes(li.title.toLowerCase()))
+        : [];
 
-    const itemClick = (item: string): void => {
+    const itemClick = (item: { title: string; text: string }): void => {
         popupObj.set({
-            title: item,
-            text: 'dslkfjsdf l ksdjfjds kfkld s kfjsdj fd sjf lkjdsfj dk sl jkflds jfklj dskl jfk ldsj kfljds klfj sdklj fklsdjfkl sdj fkl jsdk lfjsdkljd sklsdjl ksdjl dksjfdl skj dsj fkd fkldsjfd skj dskfj dkl jdsl kfjd skljdsk ljdsl jdsklj dsklfjs dfklj d',
+            title: item.title,
+            text: item.text,
         });
     };
 </script>
@@ -15,15 +19,15 @@
 <footer class=" bg-stone-800 text-white w-full mt-5">
     {#if $page.url.pathname === '/'}
         <div class="w-full grid grid-cols-2 lg:grid-cols-3">
-            {#each items as item}
+            {#each exercises as item}
                 <div class="flex items-center justify-center py-4">
                     <span
-                        class="item text-2xl decoration-pink-1 lg:text-3xl font-semibold p-4 cursor-pointer underline underline-offset-2 decoration-4"
+                        class="item text-2xl decoration-pink-1 lg:text-3xl font-semibold p-4 cursor-pointer underline underline-offset-2 decoration-4 text-center"
                         on:click={() => {
                             itemClick(item);
                         }}
                     >
-                        {item}
+                        {item.title}
                     </span>
                 </div>
             {/each}

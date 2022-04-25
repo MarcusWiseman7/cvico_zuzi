@@ -17,6 +17,7 @@
             title: event.title,
             subtitle,
             text: event.description,
+            email: true,
         });
     };
 </script>

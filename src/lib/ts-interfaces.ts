@@ -2,6 +2,7 @@ export interface PopupObj {
     title: string;
     subtitle?: string;
     text?: string;
+    email?: boolean;
 };
 
 export interface ZEvent {
@@ -15,5 +16,6 @@ export interface ZEvent {
 
 export interface InfoBlock {
     title: string;
-    text: string;
+    text?: string;
+    content?: [];
 };
