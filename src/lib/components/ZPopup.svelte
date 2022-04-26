@@ -47,6 +47,10 @@
                 <p class="mt-6 mb-2 w-full text-xl text-justify">{$popupObj.text}</p>
             {/if}
 
+            {#if $popupObj.bigText}
+                <p class="mt-2 mb-2 w-full text-xl text-justify">{$popupObj.bigText}</p>
+            {/if}
+
             {#if $popupObj.email && $kontakt?.email}
                 <a href={`mailto:${$kontakt.email}`} class="mt-6 flex items-center border rounded-lg px-4 py-2">
                     <img src={Email_src} alt="email" class="mr-2" />

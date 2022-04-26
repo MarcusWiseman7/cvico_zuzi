@@ -4,28 +4,25 @@
     import Email_src from '$lib/assets/icons/email.svg';
     import ZSchedule from '$lib/components/ZSchedule.svelte';
     import ZEvents from '$lib/components/ZEvents.svelte';
-    import { kontakt } from '$lib/stores';
-
-    const info = 'skldjf kjsdfl kdfkj dlskjfkljd lkfjdskf l';
+    import { kontakt, index, aktuality } from '$lib/stores';
+    import ZImage from '$lib/components/ZImage.svelte';
 </script>
 
 <ZHero />
 
 <main class="grid lg:grid-cols-2 gap-6">
     <section>
-        <img
-            src="https://res.cloudinary.com/dqrpaoopz/image/upload/v1602930176/zuzana/profile/zprofile_x9gut8.jpg"
-            alt="Zuzana"
-            class="rounded-lg shadow-xl"
-        />
+        {#if $index?.profilePic}
+            <ZImage src={$index.profilePic} alt={$index.alt || 'Zuzana'} zclass="rounded-lg shadow-xl" />
+        {/if}
     </section>
 
     <section class="flex flex-col justify-center">
-        <blockquote class="italic text-3xl md:text-4xl font-extralight text-right">
-            "Myslím, že cvičení by mělo být formou aktivního odpočinku a tak se snažím, aby si každý z hodiny odnesl
-            nejen dobrý pocit z toho, že pro sebe něco udělal, ale především se odprostil od běžných starostí a odcházel
-            s úsměvem"
-        </blockquote>
+        {#if $index?.profileQuote}
+            <blockquote class="italic text-3xl md:text-4xl font-extralight text-right">
+                "{$index.profileQuote}"
+            </blockquote>
+        {/if}
         <div class="flex justify-center py-5">
             {#if $kontakt?.facebook}
                 <a href={$kontakt.facebook} target="_blank" class="mx-5">
@@ -41,8 +38,8 @@
     </section>
 
     <section>
-        {#if info}
-            <h3 class="my-4 text-lg font-semibold">{info}</h3>
+        {#if $aktuality?.info}
+            <h4 class="my-4 text-lg font-semibold">{$aktuality.info}</h4>
         {/if}
         <ZEvents />
     </section>

@@ -1,60 +1,30 @@
-<script>
-    const headers = ['', 'slkdjf', 'sldkjf', 'sldkjf', 'dslkf'];
-    const rows = [
-        { cols: ['PO', 'dslkjf', 'sldkf', 'ds', ''] },
-        { cols: ['UT', 'dslkjf', '', 'lkjdskjdsfkjdskfljdskfjlkdsjfkljdsfkjdskfjdskljfdslkf', 'sldkjf sdklfj sdf'] },
-        { cols: ['ST', '', 'sldkf', 'sdfsdf', ''] },
-        { cols: ['CT', 'dslkjf', 'sldkf lksdjf kdfsk k', '', ''] },
-        { cols: ['PA', 'dslkjf', 'sldkf', '', ''] },
-        { cols: ['SO', '', '', '', ''] },
-        { cols: ['NE', '', '', '', ''] },
-    ];
-
-    const h_width = 90 / (headers.length - 1) + '%';
+<script lang="ts">
+    import { schedule } from '$lib/stores';
 </script>
 
-<table class="shadow-xl w-full break-words table-fixed">
-    <thead>
-        <tr>
-            {#each headers as header}
-                <th class="py-7">{header}</th>
-            {/each}
-        </tr>
-    </thead>
-    <tbody>
-        {#each rows as row}
+{#if $schedule?.headers && $schedule?.rows}
+    <table class="shadow-xl w-full break-words table-fixed">
+        <thead class="bg-black bg-opacity-10">
             <tr>
-                {#each row.cols as col, index}
-                    <td class="py-5 px-1 text-center" style={index != 0 ? 'width: ' + h_width : ''}>{col}</td>
+                {#each $schedule.headers as header}
+                    <th class="py-7 border-r border-r-black border-opacity-5 last:border-r-0">{header}</th>
                 {/each}
             </tr>
-        {/each}
-    </tbody>
-</table>
-
-<style>
-    thead {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    th {
-        border-right: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    th:last-child {
-        border-right: none;
-    }
-
-    td {
-        border-right: 1px solid rgba(0, 0, 0, 0.05);
-        width: 10%;
-    }
-
-    td:last-child {
-        border-right: none;
-    }
-
-    tr:nth-child(2n) {
-        background: rgba(0, 0, 0, 0.07);
-    }
-</style>
+        </thead>
+        <tbody>
+            {#each $schedule.rows as row}
+                <tr class="even:bg-black even:bg-opacity-5">
+                    {#each row.cells as cell, index}
+                        <td
+                            class={`py-5 px-1 text-center border-r border-r-black border-opacity-5 last:border-r-0 ${
+                                index == 0 ? 'font-semibold' : ''
+                            }`}
+                        >
+                            {cell}
+                        </td>
+                    {/each}
+                </tr>
+            {/each}
+        </tbody>
+    </table>
+{/if}

@@ -23,6 +23,9 @@
 {/if}
 
 <!-- Events -->
+{#if $aktuality?.info}
+    <h4 class="my-4 text-lg font-semibold">{$aktuality.info}</h4>
+{/if}
 <ZEvents grid />
 
 <!-- Carousel of pics -->
